@@ -4,21 +4,12 @@
  * @Author: Lqi
  * @Date: 2021-12-30 10:25:37
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-12-30 17:18:59
+ * @LastEditTime: 2021-12-31 15:39:22
 -->
-<script setup lang="ts">
-import { NConfigProvider } from "naive-ui";
-import { AppProvider } from "@/components/Application";
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <NConfigProvider style="height: 100%">
-    <AppProvider>
-      <div id="app">
-        <router-view></router-view>
-      </div>
-    </AppProvider>
-  </NConfigProvider>
+  <router-view></router-view>
 </template>
 
 <style>

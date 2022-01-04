@@ -4,15 +4,25 @@
  * @Author: Lqi
  * @Date: 2021-12-30 10:25:37
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-12-30 17:54:25
+ * @LastEditTime: 2022-01-04 11:20:01
  */
 import { createApp } from "vue";
 import App from "./App.vue";
-import router from "./router/router";
+import router, { setupRouter } from "./router";
 import { setupStore } from "@/store";
+import "@/mock/mock";
 
-const app = createApp(App);
+async function bootstrap() {
+  console.log("ready create app");
+  const app = createApp(App);
 
-setupStore(app);
-app.use(router);
-app.mount("#app");
+  await setupStore(app);
+
+  // 挂载路由
+  await setupRouter(app);
+  await router.isReady();
+  // app.use(router);
+  app.mount("#app", true);
+}
+
+void bootstrap();

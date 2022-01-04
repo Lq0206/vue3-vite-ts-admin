@@ -4,19 +4,21 @@
  * @Author: Lqi
  * @Date: 2021-12-30 11:54:05
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-12-30 14:20:13
+ * @LastEditTime: 2021-12-31 11:00:31
  */
 //http.ts
 import axios, { AxiosRequestConfig } from "axios";
 import NProgress from "nprogress";
+import ls from "@/utils/storage/index";
+import { ACCESS_TOKEN } from "@/store/mutation-types";
 
 // 设置请求头和请求路径
-axios.defaults.baseURL = "/api";
+axios.defaults.baseURL = "/";
 axios.defaults.timeout = 10000;
 axios.defaults.headers.post["Content-Type"] = "application/json;charset=UTF-8";
 axios.interceptors.request.use(
   (config): AxiosRequestConfig<any> => {
-    const token = window.sessionStorage.getItem("token");
+    const token = ls.get(ACCESS_TOKEN, "");
     if (token) {
       //@ts-ignore
       config.headers.token = token;
@@ -30,7 +32,7 @@ axios.interceptors.request.use(
 // 响应拦截
 axios.interceptors.response.use((res) => {
   if (res.data.code === 111) {
-    sessionStorage.setItem("token", "");
+    ls.set(ACCESS_TOKEN, "");
     // token过期操作
   }
   return res;

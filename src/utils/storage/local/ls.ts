@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-30 15:36:34
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-12-30 17:58:53
+ * @LastEditTime: 2021-12-31 09:43:08
  */
 const permanent = -2;
 
@@ -23,7 +23,7 @@ class LocalStorage {
   }
 
   /* set */
-  set(key: any, value: any, expiry: number) {
+  set(key: any, value: any, expiry?: number) {
     if (expiry && expiry > 0) {
       expiry = new Date().getTime() + expiry;
     } else {
@@ -78,7 +78,7 @@ function _watcher(key: any) {
         }
       }
     } catch (ign) {
-      throw new Error(ign);
+      throw new Error(JSON.stringify(ign));
     }
   }
 }
