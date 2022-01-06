@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-30 14:38:30
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-04 15:48:34
+ * @LastEditTime: 2022-01-05 15:04:14
  */
 
 import { RouteRecordRaw } from "vue-router";
@@ -28,7 +28,19 @@ export interface IAppState {
   size: string;
 }
 
+// AsyncRouter
 export interface IAsyncRouterState {
   routes: RouteRecordRaw[];
   addRoutes: RouteRecordRaw[];
+}
+
+// Settings
+export interface ISettingsState {
+  title: string;
+  theme?: any;
+  showSettings: boolean;
+  tagsView: boolean;
+  fixedHeader: boolean;
+  sidebarLogo: boolean;
+  darkMode?: boolean;
 }

@@ -4,14 +4,18 @@
  * @Author: Lqi
  * @Date: 2021-12-31 15:52:33
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-12-31 15:57:23
+ * @LastEditTime: 2022-01-06 10:29:36
  */
 export const routes = [
   {
     path: "/table",
     component: "Layout",
     name: "table",
-    meta: { title: "Table", icon: "el-icon-date", roles: ["admin", "visitor"] },
+    meta: {
+      title: "Table",
+      icon: "iconfont icon-table",
+      roles: ["admin", "visitor"],
+    },
     children: [
       {
         path: "/table/normalTable",

@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-31 16:38:22
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-12-31 16:39:22
+ * @LastEditTime: 2022-01-06 10:33:28
  */
 
 import { RouteRecordRaw } from "vue-router";
@@ -15,19 +15,34 @@ const routes: Array<RouteRecordRaw> = [
     path: "/table",
     component: BaseLayout,
     name: "table",
-    meta: { title: "Table", icon: "el-icon-date", roles: ["admin", "visitor"] },
+    meta: {
+      title: "Table",
+      icon: "iconfont icon-table",
+      hidden: false,
+      roles: ["admin", "visitor"],
+    },
     children: [
       {
-        path: "/table/normalTable",
+        path: "normalTable",
         component: () => import("@/views/table/normalTable.vue"),
         name: "normalTable",
-        meta: { title: "普通表格", icon: "", roles: ["admin", "visitor"] },
+        meta: {
+          title: "普通表格",
+          hidden: false,
+          icon: "iconfont icon-table",
+          roles: ["admin", "visitor"],
+        },
       },
       {
-        path: "/table/proTable",
+        path: "proTable",
         component: () => import("@/views/table/proTable.vue"),
         name: "proTable",
-        meta: { title: "proTable", icon: "", roles: ["admin"] },
+        meta: {
+          title: "proTable",
+          hidden: false,
+          icon: "iconfont icon-table",
+          roles: ["admin"],
+        },
       },
     ],
   },

@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-30 10:25:37
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-12-31 11:42:38
+ * @LastEditTime: 2022-01-04 17:12:52
  */
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
@@ -28,6 +28,7 @@ export default defineConfig({
       ext: ".gz",
     }),
     AutoImport({
+      imports: ["vue"],
       resolvers: [ElementPlusResolver()],
     }),
     Components({

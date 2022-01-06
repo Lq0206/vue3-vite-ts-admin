@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-31 14:34:39
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2021-12-31 14:55:03
+ * @LastEditTime: 2022-01-05 17:07:56
  */
 import { defineStore } from "pinia";
 import ls from "@/utils/storage/index";
@@ -24,11 +24,7 @@ export const useAppStore = defineStore({
     toggleSideBar() {
       this.sidebar.opened = !this.sidebar.opened;
       this.sidebar.withoutAnimation = false;
-      if (this.sidebar.opened) {
-        ls.set("sidebarStatus", 1);
-      } else {
-        ls.set("sidebarStatus", 0);
-      }
+      ls.set("sidebarStatus", this.sidebar.opened);
     },
     // closeSideBar({ commit }, { withoutAnimation }) {
     //   ls.set("sidebarStatus", 0);

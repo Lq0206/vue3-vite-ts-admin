@@ -1,4 +1,8 @@
 $test-color: red;
 
+a {
+    text-decoration: none
+}
 @import './variables.scss';
 @import './siderbar.scss';
+@import './transition.scss';

@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-31 16:03:10
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-04 16:48:42
+ * @LastEditTime: 2022-01-05 15:37:14
  */
 import { asyncRoutes, constantRouter } from "@/router";
 import { defineStore } from "pinia";
@@ -60,9 +60,7 @@ export const useAsyncRouterStore = defineStore({
         } else {
           accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
         }
-        console.log("generateRoutes1", accessedRoutes);
         this.setRoutes(accessedRoutes);
-        console.log("generateRoutes2", this.routes);
         resolve(accessedRoutes);
       });
     },
