@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-30 11:44:27
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-06 10:31:28
+ * @LastEditTime: 2022-01-10 15:09:15
  */
 // types: RouteRecordRaw
 import { RouteRecordRaw } from "vue-router";
@@ -36,6 +36,7 @@ const routes: Array<RouteRecordRaw> = [
           title: "仪表盘",
           icon: "iconfont icon-dashboard",
           hidden: false,
+          affix: true,
         },
       },
     ],

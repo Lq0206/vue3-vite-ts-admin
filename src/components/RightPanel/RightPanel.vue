@@ -4,19 +4,22 @@
  * @Author: Lqi
  * @Date: 2022-01-05 11:10:41
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-05 14:21:14
+ * @LastEditTime: 2022-01-11 11:13:56
 -->
 <template>
-  <div ref="rightPanel" :class="{ show: show }" class="rightPanel-container">
+  <div
+    ref="rightPanel"
+    :class="{ show: state.show }"
+    class="rightPanel-container"
+  >
     <div class="rightPanel-background" />
     <div class="rightPanel">
       <div
         class="handle-button"
-        :style="{ top: buttonTop + 'px' }"
-        @click="showToggle"
+        :style="{ top: props.buttonTop + 'px' }"
+        @click="state.show = !state.show"
       >
-        <el-icon v-if="!show"><Setting /></el-icon>
-        <el-icon v-else><Close /></el-icon>
+        <i :class="['iconfont', state.show ? 'icon-close' : 'icon-setting']" />
       </div>
       <div class="rightPanel-items">
         <slot />
@@ -25,12 +28,9 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { Setting, Close } from "@element-plus/icons-vue";
+<script lang="ts" setup>
 import { addClass, removeClass } from "@/utils";
-import { onMounted, onBeforeUnmount, reactive, watch, ref, Ref } from "vue";
-
-// props
+import { onMounted, onBeforeUnmount, reactive, watch, ref } from "vue";
 const props = defineProps({
   clickNotClose: {
     default: false,
@@ -42,20 +42,20 @@ const props = defineProps({
   },
 });
 
-// state
-const show = ref(false);
+const state = reactive({
+  show: false,
+});
 const rightPanel = ref(null);
 
-//watch
+// const theme = computed(() => store.state.settings.theme);
+
 watch(
-  () => show,
+  () => state.show,
   (value) => {
-    console.log(props);
     if (value && !props.clickNotClose) {
       addEventClick();
     }
     if (value) {
-      console.log("showRightPanel", value);
       addClass(document.body, "showRightPanel");
     } else {
       removeClass(document.body, "showRightPanel");
@@ -68,11 +68,10 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  const elx = rightPanel.value;
-  (elx as any).remove();
+  const elx = rightPanel.value as any;
+  elx.remove();
 });
 
-// methods
 const addEventClick = () => {
   window.addEventListener("click", closeSidebar);
 };
@@ -80,24 +79,18 @@ const addEventClick = () => {
 const closeSidebar = (evt: any) => {
   const parent = evt.target.closest(".rightPanel");
   if (!parent) {
-    show.value = false;
+    state.show = false;
     window.removeEventListener("click", closeSidebar);
   }
 };
 
 const insertToBody = () => {
-  const elx = rightPanel.value;
-  const body = document.querySelector("body");
+  const elx = rightPanel.value as any;
+  const body = document.querySelector("body") as HTMLBodyElement;
   body.insertBefore(elx, body.firstChild);
 };
-
-const showToggle = (e: any) => {
-  e.preventDefault();
-  show.value = !show.value;
-  console.log("showToggle", show.value);
-};
 </script>
-<style lang="scss">
+<style>
 .showRightPanel {
   overflow: hidden;
   position: relative;
@@ -106,8 +99,7 @@ const showToggle = (e: any) => {
 </style>
 
 <style lang="scss">
-.rightPanel-container.show {
-}
+@import "@/styles/variables.scss";
 .rightPanel-background {
   position: fixed;
   top: 0;
@@ -129,14 +121,14 @@ const showToggle = (e: any) => {
   transition: all 0.25s cubic-bezier(0.7, 0.3, 0.1, 1);
   transform: translate(100%);
   background: #fff;
-  z-index: 1001;
+  z-index: 5001;
 }
 
 .show {
   transition: all 0.3s cubic-bezier(0.7, 0.3, 0.1, 1);
 
   .rightPanel-background {
-    z-index: 1000;
+    z-index: 5000;
     opacity: 1;
     width: 100%;
     height: 100%;
@@ -148,7 +140,7 @@ const showToggle = (e: any) => {
 }
 
 .handle-button {
-  background: aqua;
+  background: $gradual-bg;
   width: 48px;
   height: 48px;
   position: absolute;
@@ -162,8 +154,11 @@ const showToggle = (e: any) => {
   color: #fff;
   line-height: 48px;
   i {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     font-size: 24px;
-    line-height: 48px;
   }
 }
 </style>

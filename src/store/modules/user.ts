@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-30 14:35:41
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-04 16:34:54
+ * @LastEditTime: 2022-01-11 15:15:26
  */
 import { defineStore } from "pinia";
 import { IUserState } from "../types";
@@ -32,6 +32,9 @@ export const useUserStore = defineStore({
     getRoles(): Array<string> {
       return this.roles;
     },
+    getAvatar(): string {
+      return this.avatar;
+    },
   },
   actions: {
     setToken(token: string) {
@@ -39,6 +42,9 @@ export const useUserStore = defineStore({
     },
     setRoles(roles: Array<string>) {
       this.roles = roles;
+    },
+    setAvatar(avatar: string) {
+      this.avatar = avatar;
     },
     /**
      * 用户登录
@@ -67,6 +73,10 @@ export const useUserStore = defineStore({
     async getUserInfo() {
       try {
         const res = await userApi.getUserInfo(this.getToken);
+        const { roles, avatar } = res.data;
+        this.setRoles(roles);
+        this.setAvatar(avatar);
+        console.log(res.data);
         return Promise.resolve(res.data);
       } catch (e) {
         return Promise.reject(e);
@@ -75,10 +85,11 @@ export const useUserStore = defineStore({
     /**
      * 用户登出
      */
-    async loginOut() {
+    async loginOut(): Promise<any> {
       try {
         this.setToken("");
         ls.remove(ACCESS_TOKEN);
+        return Promise.resolve();
       } catch (e) {
         return Promise.reject(e);
       }

@@ -2,12 +2,12 @@
  * @Descripttion: 
  * @version: 
  * @Author: Lqi
- * @Date: 2022-01-04 17:19:23
+ * @Date: 2022-01-07 16:58:55
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-10 17:24:15
+ * @LastEditTime: 2022-01-07 16:59:13
 -->
 <template>
-  <div style="height: 1200px">normalTable</div>
+  <div>404</div>
 </template>
 
 <script setup lang="ts"></script>

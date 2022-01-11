@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-30 15:07:27
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-05 17:50:55
+ * @LastEditTime: 2022-01-11 15:31:15
 -->
 <template>
   <div class="login">
@@ -17,7 +17,12 @@
           />
         </ElFormItem>
         <ElFormItem label="密码" prop="password">
-          <ElInput v-model="formValue.password" placeholder="输入密码：admin" />
+          <ElInput
+            v-model="formValue.password"
+            type="password"
+            placeholder="输入密码：admin"
+            show-password
+          />
         </ElFormItem>
         <ElFormItem>
           <ElButton
@@ -29,22 +34,15 @@
             >登 录</ElButton
           >
         </ElFormItem>
-        <ElButton
-          type="primary"
-          size="large"
-          :loading="loading"
-          @click="getUser"
-          >获取用户信息</ElButton
-        >
       </ElForm>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-// import { ElForm, ElFormItem, ElButton, ElInput } from "element-plus";
 import { reactive, ref } from "vue";
 import { useUserStore } from "@/store/modules/user";
+import router from "@/router";
 const formValue = reactive({
   username: "admin",
   password: "admin",
@@ -82,12 +80,11 @@ const handleSubmit = (e: any) => {
         password,
       };
       const res = await userStore.login(params);
+      if (res.code === 200) {
+        router.push({ path: "/" });
+      }
     }
   });
-};
-
-const getUser = async () => {
-  const res = await userStore.getUserInfo();
 };
 </script>
 <style lang="scss" scoped>

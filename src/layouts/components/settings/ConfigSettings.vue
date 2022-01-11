@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2022-01-04 17:40:24
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-05 11:09:28
+ * @LastEditTime: 2022-01-07 16:55:40
 -->
 <template>
   <div class="drawer-container">
@@ -77,6 +77,29 @@ const sidebarLogo = computed({
 });
 </script>
 <style lang="scss" scoped>
+.drawer-container {
+  padding: 24px;
+  font-size: 14px;
+  line-height: 1.5;
+  word-wrap: break-word;
+
+  .drawer-title {
+    margin-bottom: 12px;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .drawer-item {
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    padding: 12px 0;
+  }
+
+  .drawer-switch {
+    float: right;
+  }
+}
 .setting-toggle {
   position: absolute;
   left: -50px;

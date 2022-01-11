@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-31 16:26:54
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-05 18:08:40
+ * @LastEditTime: 2022-01-11 15:23:33
  */
 import { App } from "vue";
 import {
@@ -37,7 +37,13 @@ export const router = createRouter({
   scrollBehavior: () => ({ left: 0, top: 0 }),
 });
 
+export const resetRouter = () => {
+  const newRouter = router;
+  router.resolve = newRouter.resolve; // reset router
+};
+
 export function setupRouter(app: App) {
+  console.log("install router");
   createRouterPermission(router);
   app.use(router);
 }

@@ -4,13 +4,18 @@
  * @Author: Lqi
  * @Date: 2021-12-31 16:03:10
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-05 15:37:14
+ * @LastEditTime: 2022-01-07 17:29:29
  */
 import { asyncRoutes, constantRouter } from "@/router";
 import { defineStore } from "pinia";
 import { RouteRecordRaw } from "vue-router";
 import { store } from "@/store";
 import { IAsyncRouterState } from "../types";
+
+interface checkRoute {
+  routes: RouteRecordRaw;
+  flag: boolean;
+}
 
 const hasPermission = (roles: string[], route: any) => {
   if (route.meta && route.meta.roles) {
@@ -60,6 +65,12 @@ export const useAsyncRouterStore = defineStore({
         } else {
           accessedRoutes = filterAsyncRoutes(asyncRoutes, roles);
         }
+        accessedRoutes.push({
+          path: "/:pathMatch(.*)*",
+          name: "NotFound",
+          meta: { title: "找不到页面", hidden: true },
+          component: () => import("@/views/errorPages/404Page.vue"),
+        });
         this.setRoutes(accessedRoutes);
         resolve(accessedRoutes);
       });

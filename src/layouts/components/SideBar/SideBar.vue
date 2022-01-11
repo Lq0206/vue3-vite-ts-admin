@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-31 15:05:13
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-06 17:26:50
+ * @LastEditTime: 2022-01-11 14:42:21
 -->
 <template>
   <div :class="{ 'has-logo': showLogo }">
@@ -29,15 +29,15 @@
         ></SideBarItem>
       </el-menu>
     </el-scrollbar>
-    <div class="menu-toggle" @click="toggleSideBar">
+    <a class="menu-toggle" @click="toggleSideBar">
       <el-icon v-if="!isCollapse"><d-arrow-left /></el-icon>
       <el-icon v-else><DArrowRight /></el-icon>
-    </div>
+    </a>
   </div>
 </template>
 
 <script setup lang="ts">
-import { DArrowLeft, DArrowRight, Location } from "@element-plus/icons-vue";
+import { DArrowLeft, DArrowRight } from "@element-plus/icons-vue";
 import { computed, provide } from "vue";
 import { useRoute } from "vue-router";
 import { useSettingsStore } from "@/store/modules/settings";
@@ -68,7 +68,6 @@ const routes = computed(() => useAsyncRouter.routes);
 
 const toggleSideBar = () => {
   useApp.toggleSideBar();
-  console.log("isCollapse", isCollapse);
 };
 </script>
 <style lang="scss">
@@ -79,14 +78,18 @@ const toggleSideBar = () => {
   bottom: 0;
   left: 0;
   right: 0;
-  color: #fff;
+  color: rgba(#fff, 0.74);
   background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   font-size: 20px;
   text-align: center;
+  transition: color 0.28s ease;
+  &:hover {
+    color: #fff;
+  }
 }
 
 .el-menu-item.is-active {
   color: #fff;
-  background-color: #0a60bd !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
 }
 </style>

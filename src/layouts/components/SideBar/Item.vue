@@ -4,17 +4,16 @@
  * @Author: Lqi
  * @Date: 2022-01-05 15:31:53
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-06 17:11:49
+ * @LastEditTime: 2022-01-07 10:15:37
 -->
 <template>
   <i v-if="props.icon" :class="props.icon" class="sub-el-icon"></i>
-  <span v-if="!isCollapse" class="menu-item-text">
+  <span class="menu-item-text">
     {{ title }}
   </span>
 </template>
 
 <script setup lang="ts">
-import { inject } from "vue";
 const props = defineProps({
   icon: {
     type: String,
@@ -25,7 +24,5 @@ const props = defineProps({
     default: "",
   },
 });
-
-const isCollapse = inject("isCollapse");
 </script>
 <style lang="scss" scoped></style>

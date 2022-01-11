@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-30 14:38:30
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-05 15:04:14
+ * @LastEditTime: 2022-01-07 10:05:51
  */
 
 import { RouteRecordRaw } from "vue-router";
@@ -43,4 +43,10 @@ export interface ISettingsState {
   fixedHeader: boolean;
   sidebarLogo: boolean;
   darkMode?: boolean;
+}
+
+// tagsView
+export interface ITagsViewState {
+  visitedViews: Array<RouteRecordRaw>;
+  cachedViews: Array<RouteRecordRaw>;
 }

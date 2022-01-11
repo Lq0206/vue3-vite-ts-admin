@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2022-01-05 14:23:29
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-06 17:14:22
+ * @LastEditTime: 2022-01-07 10:45:41
 -->
 <template>
   <template v-if="!item.meta.hidden">
@@ -15,19 +15,15 @@
         !item.alwaysShow
       "
     >
-      <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
-        <el-menu-item
-          :index="resolvePath(onlyOneChild.path)"
-          :class="{
-            'submenu-title-noDropdown': !isNest,
-          }"
-        >
-          <item
-            :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)"
-            :title="onlyOneChild.meta.title"
-          />
-        </el-menu-item>
-      </app-link>
+      <el-menu-item
+        :index="resolvePath(onlyOneChild.path)"
+        @click="handlMenuItemClick(onlyOneChild.path)"
+      >
+        <item
+          :icon="onlyOneChild.meta.icon || (item.meta && item.meta.icon)"
+          :title="onlyOneChild.meta.title"
+        />
+      </el-menu-item>
     </template>
     <el-sub-menu
       v-else
@@ -105,14 +101,21 @@ const hasOneShowingChild = (children = [], parent: any) => {
   return false;
 };
 
-const resolvePath = (routePath) => {
+const resolvePath = (routePath: string) => {
   if (isExternal(routePath)) {
     return routePath;
   }
   if (isExternal(props.basePath)) {
     return props.basePath;
   }
+
   return path.resolve(props.basePath, routePath);
+};
+
+const handlMenuItemClick = (path: string) => {
+  router.push({
+    path: resolvePath(path),
+  });
 };
 </script>
 <style lang="scss" scoped></style>

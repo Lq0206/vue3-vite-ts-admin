@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2022-01-05 17:34:18
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-05 17:34:20
+ * @LastEditTime: 2022-01-07 15:17:26
 -->
 <script lang="ts">
 import { defineComponent } from "vue";
@@ -13,6 +13,7 @@ export default defineComponent({
   setup() {
     const { params, query } = useRoute();
     const { path } = params;
+    console.log("red", path);
     useRouter()
       .replace({ path: "/" + path, query })
       .catch((err) => {

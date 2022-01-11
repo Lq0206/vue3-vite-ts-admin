@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-31 10:26:01
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-04 16:33:16
+ * @LastEditTime: 2022-01-07 11:17:35
  */
 import Mock from "mockjs";
 import { loginInfo, userInfo } from "./modules/user";
@@ -48,6 +48,15 @@ const getRoutes = () => {
   };
 };
 
+const getAvatars = () => {
+  const arr = [];
+  for (let i = 0; i < 10; i++) {
+    arr.push(Random.image());
+  }
+  return arr;
+};
+
 Mock.mock("/login", "post", login);
-Mock.mock("/user/getUserInfo", getUserInfo);
+Mock.mock("/user/getUserInfo", "post", getUserInfo);
 Mock.mock("/getRoutes", "get", getRoutes);
+Mock.mock("/getAvatars", "get", getAvatars);
