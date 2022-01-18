@@ -1,0 +1,26 @@
+:root {
+    --font-color: #333;
+    // login
+    --login-bg-color: #50e3c2;
+    --login-bg-image: radial-gradient(
+        at 47% 33%,
+        hsl(162, 77%, 40%) 0,
+        transparent 59%
+      ),
+      radial-gradient(at 82% 65%, hsl(198, 100%, 50%) 0, transparent 55%);
+    --login-form-bg-color: rgba(255, 255, 255, 0.75);
+    --login-form-border: 1px solid rgba(209, 213, 219, 0.3);
+    --login-form-shadow-color: 171deg 84% 36%;
+    // app
+    --container-bg-color: #fff;
+}
+
+.dark:root {
+    --font-color: #fff;
+    --login-bg-color: #111927;
+    --login-bg-image:  radial-gradient(at 47% 33%, hsl(162.00, 77%, 40%) 0, transparent 59%), radial-gradient(at 82% 65%, hsl(218.00, 39%, 11%) 0, transparent 55%);
+    --login-form-bg-color: rgba(17, 25, 40, 0.75);
+    --login-form-border: 1px solid rgba(255, 255, 255, 0.125);
+    --login-form-shadow-color: 280deg 8% 4%;
+    --container-bg-color: #fff;
+}

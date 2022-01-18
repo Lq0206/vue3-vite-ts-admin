@@ -4,13 +4,14 @@
  * @Author: Lqi
  * @Date: 2021-12-30 10:25:37
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-07 15:33:24
+ * @LastEditTime: 2022-01-17 17:40:21
  */
 import { createApp } from "vue";
 import App from "./App.vue";
 import router, { setupRouter } from "./router";
 import { setupStore } from "@/store/index";
 import "element-plus/es/components/message/style/css";
+import "element-plus/es/components/message-box/style/css";
 import "nprogress/nprogress.css";
 import "@/mock/mock";
 

@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-30 14:38:30
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-07 10:05:51
+ * @LastEditTime: 2022-01-17 16:00:30
  */
 
 import { RouteRecordRaw } from "vue-router";
@@ -26,6 +26,7 @@ export interface IAppState {
   };
   device: string;
   size: string;
+  themeModel: boolean;
 }
 
 // AsyncRouter

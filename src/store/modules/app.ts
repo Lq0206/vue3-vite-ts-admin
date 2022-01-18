@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-31 14:34:39
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-11 14:04:52
+ * @LastEditTime: 2022-01-17 18:14:21
  */
 import { defineStore } from "pinia";
 import ls from "@/utils/storage/index";
@@ -13,15 +13,20 @@ export const useAppStore = defineStore({
   id: "app",
   state: (): IAppState => ({
     sidebar: {
-      opened: ls.get("sidebarStatus") ? !!+ls.get("sidebarStatus") : true,
+      opened: ls.get("sidebarStatus"),
       withoutAnimation: false,
     },
     device: "desktop",
     size: ls.get("size") || "default",
+    themeModel: ls.get("themeModel"),
   }),
   getters: {
     getSize(): string {
       return this.size;
+    },
+    getThemeModel(): boolean {
+      console.log("get", this.themeModel);
+      return this.themeModel;
     },
   },
   actions: {
@@ -32,6 +37,11 @@ export const useAppStore = defineStore({
     },
     setSize(size: string) {
       this.size = size;
+    },
+    toggleThemeModel(value: boolean) {
+      this.themeModel = value;
+      ls.set("themeModel", this.themeModel);
+      return Promise.resolve(value);
     },
     // closeSideBar({ commit }, { withoutAnimation }) {
     //   ls.set("sidebarStatus", 0);
