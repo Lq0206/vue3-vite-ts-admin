@@ -76,7 +76,6 @@ export const useUserStore = defineStore({
         const { roles, avatar } = res.data;
         this.setRoles(roles);
         this.setAvatar(avatar);
-        console.log(res.data);
         return Promise.resolve(res.data);
       } catch (e) {
         return Promise.reject(e);

@@ -4,16 +4,16 @@
  * @Author: Lqi
  * @Date: 2021-12-31 14:29:59
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-11 10:48:31
+ * @LastEditTime: 2022-01-20 15:04:52
 -->
 <template>
   <div :class="classObj" class="app-wrapper">
     <SideBar class="sidebar-container" />
     <div :class="{ hasTagsView: needTagsView }" class="main-container">
-      <div :class="{ 'fixed-header': fixedHeader }">
-        <NavBar />
+      <header :class="['sys-header', { 'fixed-header': fixedHeader }]">
+        <NavBar :is-tag="needTagsView" />
         <tags-view v-if="needTagsView" />
-      </div>
+      </header>
       <app-main />
       <RightPanel v-if="showSettings">
         <Settings />
@@ -78,6 +78,7 @@ const classObj = computed(() => {
   z-index: 9;
   width: calc(100% - #{$sideBarWidth});
   transition: width 0.28s;
+  box-shadow: var(--sidebar-right-shadow);
 }
 
 .hideSidebar .fixed-header {

@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-31 16:26:54
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-11 15:23:33
+ * @LastEditTime: 2022-01-19 15:41:11
  */
 import { App } from "vue";
 import {
@@ -43,7 +43,6 @@ export const resetRouter = () => {
 };
 
 export function setupRouter(app: App) {
-  console.log("install router");
   createRouterPermission(router);
   app.use(router);
 }

@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-31 15:05:13
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-11 14:42:21
+ * @LastEditTime: 2022-01-20 15:41:28
 -->
 <template>
   <div :class="{ 'has-logo': showLogo }">
@@ -15,10 +15,6 @@
         :default-active="activeMenu"
         :unique-opened="false"
         :collapse-transition="false"
-        active-text-color="#0a60bd"
-        background-color="#0c2135"
-        class="el-menu-vertical-demo"
-        text-color="#b7bdc3"
         mode="vertical"
       >
         <SideBarItem
@@ -63,6 +59,7 @@ const activeMenu = computed((): string => {
 const sideBar = computed(() => useApp.sidebar);
 const showLogo = computed(() => useSettings.sidebarLogo);
 const isCollapse = computed(() => !sideBar.value.opened);
+const themeModel = computed(() => useApp.themeModel);
 provide("isCollapse", isCollapse);
 const routes = computed(() => useAsyncRouter.routes);
 
@@ -78,18 +75,14 @@ const toggleSideBar = () => {
   bottom: 0;
   left: 0;
   right: 0;
-  color: rgba(#fff, 0.74);
-  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: var(--el-text-color-primary);
+  background-color: var(--container-bg-color-1);
   font-size: 20px;
   text-align: center;
   transition: color 0.28s ease;
+  border-top: 1px solid var(--border-color);
   &:hover {
-    color: #fff;
+    color: var(--el-text-color-primary);
   }
-}
-
-.el-menu-item.is-active {
-  color: #fff;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
 }
 </style>

@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-30 10:25:37
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-17 18:11:04
+ * @LastEditTime: 2022-01-19 17:36:01
 -->
 <script setup lang="ts"></script>
 
@@ -15,14 +15,16 @@
 </template>
 <script lang="ts" setup>
 import zhCn from "element-plus/lib/locale/lang/zh-cn";
-import { computed, onMounted } from "vue";
+import { computed, onMounted, getCurrentInstance } from "vue";
+import { IComponentInternalInstance } from "@/utils/eleCompInstall";
 import { useAppStore } from "./store/modules/app";
-import { ElMessageBox, ElMessage } from "element-plus";
 import { handleClass } from "./components/ThemeSwitch/ThemeSwitch";
 import ls from "./utils/storage";
 const locale = zhCn;
 
 const useApp = useAppStore();
+const proxy = getCurrentInstance()?.appContext.config
+  .globalProperties as IComponentInternalInstance;
 
 const size = computed(() => useApp.getSize as any);
 onMounted(() => {
@@ -36,29 +38,26 @@ onMounted(() => {
   const isDark =
     window.matchMedia &&
     window.matchMedia("(prefers-color-scheme: dark)").matches;
-  console.log("2", useApp.getThemeModel);
-  if (isDark && !useApp.getThemeModel) {
-    ElMessageBox.confirm(
-      "您的电脑正在处于黑夜模式是否将该系统切换成黑夜模式？",
-      "提示",
-      {
+  if (isDark && !useApp.getThemeModel && !useApp.isSwitch) {
+    proxy.$messageBox
+      .confirm("您的电脑正在处于黑夜模式是否将该系统切换成黑夜模式？", "提示", {
         confirmButtonText: "确认",
         cancelButtonText: "取消",
         type: "warning",
-      }
-    )
+      })
       .then(async () => {
         const res = await useApp.toggleThemeModel(true);
         handleClass(true);
         if (res) {
-          ElMessage({
+          proxy.$message({
             type: "success",
             message: "切换成功",
           });
         }
       })
       .catch(() => {
-        ElMessage({
+        useApp.setIsSwitch(true);
+        proxy.$message({
           type: "info",
           message: "取消切换",
         });

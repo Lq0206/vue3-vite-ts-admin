@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2022-01-05 11:16:26
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-05 11:17:57
+ * @LastEditTime: 2022-01-20 09:58:05
  */
 /**
  * Check if an element has a class
@@ -34,7 +34,7 @@ export function addClass(ele: Element, cls: string) {
 export function removeClass(ele: Element, cls: string) {
   if (hasClass(ele, cls)) {
     const reg = new RegExp("(\\s|^)" + cls + "(\\s|$)");
-    ele.className = ele.className.replace(reg, " ");
+    ele.className = ele.className.replace(reg, "");
   }
 }
 

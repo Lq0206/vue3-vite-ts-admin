@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2022-01-17 16:08:47
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-17 18:08:20
+ * @LastEditTime: 2022-01-18 10:48:09
 -->
 <template>
   <div class="model-switch">
@@ -34,16 +34,5 @@ const model = computed({
     handleClass(value);
   },
 });
-
-// const handleThemeChange = async (value: any) => {
-//   const res = await useApp.toggleThemeModel(value);
-//   handleClass(res);
-// };
 </script>
-<style lang="scss" scoped>
-.model-switch {
-  position: absolute;
-  right: 40px;
-  top: 20px;
-}
-</style>
+<style lang="scss" scoped></style>

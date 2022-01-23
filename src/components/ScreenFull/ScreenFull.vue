@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2022-01-07 11:42:23
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-07 15:11:55
+ * @LastEditTime: 2022-01-20 10:10:12
 -->
 <template>
   <div style="padding: 0 12px" @click="handleClick">
@@ -14,13 +14,15 @@
 
 <script setup lang="ts">
 import screenfull from "screenfull";
-import { onMounted, onBeforeMount, ref } from "vue";
-import { ElMessage } from "element-plus";
+import { onMounted, onBeforeMount, ref, getCurrentInstance } from "vue";
+import { IComponentInternalInstance } from "@/utils/eleCompInstall";
 const isFullscreen = ref(false);
+const proxy = getCurrentInstance()?.appContext.config
+  .globalProperties as IComponentInternalInstance;
 const handleClick = () => {
   if (!screenfull.isEnabled) {
-    ElMessage({
-      message: "you browser can not work",
+    proxy.$message({
+      message: "您的浏览器不支持该功能",
       type: "warning",
     });
     return false;

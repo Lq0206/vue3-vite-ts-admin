@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2022-01-06 17:29:13
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-11 14:31:45
+ * @LastEditTime: 2022-01-20 15:16:26
 -->
 <template>
   <div id="tags-view-container" class="tags-view-container">
@@ -238,16 +238,14 @@ onMounted(async () => {
 });
 </script>
 <style lang="scss" scoped>
-@import "@/styles/variables.scss";
 .flex-content {
   display: flex;
 }
 .tags-view-container {
   height: 34px;
   width: 100%;
-  background: #fff;
-  border-bottom: 1px solid #d8dce5;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
+  background: var(--container-bg-color-2);
+  border-bottom: 1px solid var(--border-color);
   .tags-view-item {
     box-sizing: border-box;
     display: inline-block;
@@ -255,9 +253,9 @@ onMounted(async () => {
     cursor: pointer;
     height: 26px;
     line-height: 26px;
-    border: 1px solid #d8dce5;
-    color: #495060;
-    background: #fff;
+    border: 1px solid #d9d8d9;
+    color: var(--el-text-color-primary);
+    background: var(--container-bg-color-1);
     padding: 0 8px;
     font-size: 12px;
     margin-left: 5px;
@@ -272,9 +270,9 @@ onMounted(async () => {
       margin-right: 15px;
     }
     &.active {
-      background: $gradual-bg;
+      background: var(--active-sign-color);
       color: #fff;
-      border-color: #764ba2;
+      border-color: var(--active-sign-color);
     }
     // &.is-affix:hover {
     //   .tag-icon {

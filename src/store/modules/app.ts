@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-31 14:34:39
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-17 18:14:21
+ * @LastEditTime: 2022-01-18 16:28:35
  */
 import { defineStore } from "pinia";
 import ls from "@/utils/storage/index";
@@ -19,13 +19,13 @@ export const useAppStore = defineStore({
     device: "desktop",
     size: ls.get("size") || "default",
     themeModel: ls.get("themeModel"),
+    isSwitch: ls.get("isSwitch") || false,
   }),
   getters: {
     getSize(): string {
       return this.size;
     },
     getThemeModel(): boolean {
-      console.log("get", this.themeModel);
       return this.themeModel;
     },
   },
@@ -37,6 +37,10 @@ export const useAppStore = defineStore({
     },
     setSize(size: string) {
       this.size = size;
+    },
+    setIsSwitch(value: boolean) {
+      this.isSwitch = value;
+      ls.set("isSwitch", value);
     },
     toggleThemeModel(value: boolean) {
       this.themeModel = value;

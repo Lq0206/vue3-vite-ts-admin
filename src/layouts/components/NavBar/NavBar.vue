@@ -4,10 +4,10 @@
  * @Author: Lqi
  * @Date: 2022-01-07 10:48:54
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-11 15:28:03
+ * @LastEditTime: 2022-01-20 15:21:08
 -->
 <template>
-  <div class="navbar">
+  <div :class="['navbar', { 'is-border': props.isTag }]">
     <Breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
     <div class="right-menu">
       <NavBarMessage></NavBarMessage>
@@ -47,31 +47,36 @@ import { useRouter } from "vue-router";
 import { resetRouter } from "@/router";
 const useUser = useUserStore();
 const router = useRouter();
+const props = defineProps({
+  isTag: {
+    type: Boolean,
+    default: false,
+  },
+});
 const avatar = computed(() => useUser.getAvatar);
 const handleCommand = async (command: string) => {
   switch (command) {
     case "setting":
-      console.log("setting");
       break;
     case "logout":
       await useUser.loginOut();
       resetRouter();
       router.push(`/login`);
       break;
-
     default:
       break;
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .navbar {
   height: 50px;
   overflow: hidden;
   position: relative;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
-
+  background: var(--container-bg-color-2);
+  &.is-border {
+    border: 1px solid var(--border-color);
+  }
   .hamburger-container {
     line-height: 46px;
     height: 100%;
@@ -79,7 +84,6 @@ const handleCommand = async (command: string) => {
     cursor: pointer;
     transition: background 0.3s;
     -webkit-tap-highlight-color: transparent;
-
     &:hover {
       background: rgba(0, 0, 0, 0.025);
     }
@@ -112,11 +116,9 @@ const handleCommand = async (command: string) => {
       font-size: 18px;
       color: #5a5e66;
       vertical-align: text-bottom;
-
       &.hover-effect {
         cursor: pointer;
         transition: background 0.3s;
-
         &:hover {
           background: rgba(0, 0, 0, 0.025);
         }
@@ -124,20 +126,16 @@ const handleCommand = async (command: string) => {
     }
 
     .avatar-container {
-      // margin-right: 30px;
-
       .avatar-wrapper {
         margin-top: 5px;
         margin-left: 12px;
         position: relative;
-
         .user-avatar {
           cursor: pointer;
           width: 40px;
           height: 40px;
           border-radius: 10px;
         }
-
         .el-icon-caret-bottom {
           cursor: pointer;
           position: absolute;
@@ -149,7 +147,8 @@ const handleCommand = async (command: string) => {
     }
   }
   .navbar-icon {
-    font-size: 24px;
+    font-size: 18px;
+    color: var(--el-text-color-primary);
   }
 }
 </style>

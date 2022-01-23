@@ -1,9 +1,8 @@
-@use 'theme' as *;
-@use 'variables' as *;
-@use 'siderbar' as *;
-@use 'transition' as *;
-@use 'cover' as *;
-// @use 'layouts';
+@use 'theme';
+@use 'variables';
+@use 'siderbar';
+@use 'transition';
+@use 'cover';
 
 body {
     height: 100%;
@@ -99,4 +98,9 @@ body {
   }
 a {
     text-decoration: none
+}
+
+
+.page-wrapper {
+  color: var(--el-text-color-primary);
 }

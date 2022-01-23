@@ -4,19 +4,19 @@
  * @Author: Lqi
  * @Date: 2022-01-07 11:11:32
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-11 14:06:33
+ * @LastEditTime: 2022-01-20 11:54:09
 -->
 <template>
   <div class="nav-message">
     <el-popover
       placement="bottom"
       :width="300"
-      trigger="click"
+      trigger="hover"
       popper-class="nav-message-popper"
     >
       <template #reference>
         <el-badge :value="brigeValue" :max="10" type="danger">
-          <a class="nav-message-btn">
+          <a class="nav-message-btn navbar-icon">
             <el-icon><bell /></el-icon>
           </a>
         </el-badge>
@@ -228,7 +228,7 @@ const handleStatus = (status: any) => {
       .tab-msg-item {
         display: flex;
         position: relative;
-        padding: 10px 20px;
+        padding: 10px 0;
         justify-items: center;
         justify-content: center;
         border-bottom: 1px solid #f5f5f5;
@@ -246,8 +246,9 @@ const handleStatus = (status: any) => {
           display: flex;
           justify-items: center;
           justify-content: center;
-          width: 40px;
-          height: 40px;
+          margin-right: 6px;
+          width: 20px;
+          height: 20px;
           border-radius: 50%;
           overflow: hidden;
           img {
@@ -257,15 +258,16 @@ const handleStatus = (status: any) => {
         }
         .content {
           flex: 1;
-          padding-left: 12px;
+          // padding-left: 12px;
           p {
             margin: 0;
           }
           .title {
-            margin-bottom: 12px;
+            margin-bottom: 8px;
           }
           .title ~ .msg {
             color: #909399;
+            margin-bottom: 6px;
           }
           .msg {
             color: #303133;
@@ -302,7 +304,7 @@ const handleStatus = (status: any) => {
 }
 .message-footer-btn {
   display: flex;
-  padding: 12px 0;
+  padding: 12px 0 0 0;
   justify-content: center;
   justify-items: center;
   > .btn {

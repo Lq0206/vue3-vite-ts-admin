@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2022-01-05 11:10:41
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-11 11:13:56
+ * @LastEditTime: 2022-01-20 14:54:44
 -->
 <template>
   <div
@@ -99,7 +99,6 @@ const insertToBody = () => {
 </style>
 
 <style lang="scss">
-@import "@/styles/variables.scss";
 .rightPanel-background {
   position: fixed;
   top: 0;
@@ -120,15 +119,15 @@ const insertToBody = () => {
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.05);
   transition: all 0.25s cubic-bezier(0.7, 0.3, 0.1, 1);
   transform: translate(100%);
-  background: #fff;
-  z-index: 5001;
+  background: var(--container-bg-color-2);
+  z-index: 2001;
 }
 
 .show {
   transition: all 0.3s cubic-bezier(0.7, 0.3, 0.1, 1);
 
   .rightPanel-background {
-    z-index: 5000;
+    z-index: 2000;
     opacity: 1;
     width: 100%;
     height: 100%;
@@ -140,7 +139,7 @@ const insertToBody = () => {
 }
 
 .handle-button {
-  background: $gradual-bg;
+  background: var(--active-sign-color);
   width: 48px;
   height: 48px;
   position: absolute;

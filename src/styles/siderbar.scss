@@ -1,11 +1,9 @@
 @import './variables.scss';
 #app {
-  
-
   .sidebar-container {
-    transition: width 0.28s;
+    transition: all 0.28s;
     width: $sideBarWidth !important;
-    background-color: $menuBg;
+    background-color: var(--container-bg-color-1);
     height: 100%;
     position: fixed;
     font-size: 0px;
@@ -14,6 +12,8 @@
     left: 0;
     z-index: 1001;
     overflow: hidden;
+    border-right: 1px solid var(--border-color);
+    box-shadow: var(--sidebar-right-shadow);
 
     // reset element-ui css
     .horizontal-collapse-transition {
@@ -23,6 +23,7 @@
 
     .scrollbar-wrapper {
       overflow-x: hidden !important;
+      padding-bottom: 30px;
     }
 
     .el-scrollbar__bar.is-vertical {
@@ -66,23 +67,50 @@
 
     // menu hover
     .submenu-title-noDropdown,
-    .el-submenu__title {
+    .el-menu-item,
+    .el-sub-menu__title {
       &:hover {
-        background-color: $menuHover !important;
+        background-color: var(--menu-item-hover-bg-color) !important;
+      }
+    }
+    .el-sub-menu .el-sub-menu__title, .el-menu-item {
+      background-color: var(--container-bg-color-1);
+      color: var(--menu-item-text-color);
+    }
+
+    .is-active > .el-sub-menu__title {
+      color: var(--submenu-active-text-color) !important;
+    }
+    .el-menu-item.is-active {
+      color: var(--menu-item-active-text-color);
+    }
+    .el-menu-item.is-active::before {
+      content: '';
+      position: absolute;
+      width: 5px;
+      height: 80%;
+      border-radius: 0 6px 6px 0;
+      background-color: var(--active-sign-color);
+      left: 0%;
+      animation: sign .28s;
+    }
+
+    @keyframes sign {
+      0% {
+        transform: scale(0);
+      }
+      100% {
+        transform: scale(1);
       }
     }
 
-    .is-active > .el-submenu__title {
-      color: $subMenuActiveText !important;
-    }
-
-    & .nest-menu .el-submenu > .el-submenu__title,
-    & .el-submenu .el-menu-item {
+    & .nest-menu .el-sub-menu > .el-sub-menu__title,
+    & .el-sub-menu .el-menu-item {
       min-width: $sideBarWidth !important;
-      background-color: $subMenuBg !important;
+      background-color: var(--container-bg-color-1) !important;
 
       &:hover {
-        background-color: $subMenuHover !important;
+        background-color: var(--menu-item-hover-bg-color) !important;
       }
     }
   }
@@ -116,14 +144,12 @@
       }
     }
 
-    .el-submenu {
+    .el-sub-menu {
       overflow: hidden;
 
-      & > .el-submenu__title {
+      & > .el-sub-menu__title {
         font-size: 20px;
-        padding: 0 20px;
-        // use svg
-        // padding: 0 !important;
+        padding: 0 !important;
 
         .svg-icon {
           margin-left: 20px;
@@ -133,15 +159,15 @@
           margin-left: 19px;
         }
 
-        .el-submenu__icon-arrow {
+        .el-sub-menu__icon-arrow {
           display: none;
         }
       }
     }
 
     .el-menu--collapse {
-      .el-submenu {
-        & > .el-submenu__title {
+      .el-sub-menu {
+        & > .el-sub-menu__title {
           & > span {
             height: 0;
             width: 0;
@@ -154,7 +180,7 @@
     }
   }
 
-  .el-menu--collapse .el-menu .el-submenu {
+  .el-menu--collapse .el-menu .el-sub-menu {
     min-width: $sideBarWidth !important;
   }
 
@@ -189,20 +215,17 @@
 // when menu collapsed
 .el-menu--vertical {
   & > .el-menu {
-    // svg.icon {
-    //   margin-right: 16px;
-    // }
     .sub-el-icon {
       margin-right: 12px;
       margin-left: -2px;
     }
   }
 
-  .nest-menu .el-submenu > .el-submenu__title,
+  .nest-menu .el-sub-menu > .el-sub-menu__title,
   .el-menu-item {
     &:hover {
       // you can use $subMenuHover
-      background-color: $menuHover !important;
+      // background-color: $menuHover !important;
     }
   }
 

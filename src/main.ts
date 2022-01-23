@@ -4,23 +4,22 @@
  * @Author: Lqi
  * @Date: 2021-12-30 10:25:37
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-17 17:40:21
+ * @LastEditTime: 2022-01-20 09:59:00
  */
 import { createApp } from "vue";
 import App from "./App.vue";
 import router, { setupRouter } from "./router";
 import { setupStore } from "@/store/index";
-import "element-plus/es/components/message/style/css";
-import "element-plus/es/components/message-box/style/css";
+import { installEl } from "./utils/eleCompInstall";
 import "nprogress/nprogress.css";
+import "@/styles/main.scss";
 import "@/mock/mock";
 
 async function bootstrap() {
   const app = createApp(App);
-  app.config.globalProperties.$ELEMENT = { size: "medium", zIndex: 3000 };
 
   await setupStore(app);
-
+  await installEl(app);
   // 挂载路由
   await setupRouter(app);
   await router.isReady();

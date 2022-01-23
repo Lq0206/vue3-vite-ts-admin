@@ -4,21 +4,12 @@
  * @Author: Lqi
  * @Date: 2022-01-05 14:26:44
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-06 17:21:51
+ * @LastEditTime: 2022-01-20 11:18:46
 -->
 <template>
   <div class="sidebar-logo-container" :class="{ collapse: collapse }">
     <transition name="sidebarLogoFade">
-      <router-link
-        v-if="collapse"
-        key="collapse"
-        class="sidebar-logo-link"
-        to="/"
-      >
-        <img v-if="logo" :src="logo" class="sidebar-logo" />
-        <h1 v-else class="sidebar-title">{{ title }}</h1>
-      </router-link>
-      <router-link v-else key="expand" class="sidebar-logo-link" to="/">
+      <router-link key="collapse" class="sidebar-logo-link" to="/">
         <img v-if="logo" :src="logo" class="sidebar-logo" />
         <h1 class="sidebar-title">{{ title }}</h1>
       </router-link>
@@ -58,7 +49,7 @@ const title = computed(() => useSettings.title);
   width: 100%;
   height: 50px;
   line-height: 50px;
-  background: #2b2f3a;
+  background: var(--container-bg-color-1);
   text-align: center;
   overflow: hidden;
 
@@ -76,7 +67,7 @@ const title = computed(() => useSettings.title);
     & .sidebar-title {
       display: inline-block;
       margin: 0;
-      color: #fff;
+      color: var(--el-text-color-primary);
       font-weight: 600;
       line-height: 50px;
       font-size: 14px;

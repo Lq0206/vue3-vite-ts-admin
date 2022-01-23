@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2022-01-07 14:32:17
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-11 14:16:11
+ * @LastEditTime: 2022-01-20 10:09:43
 -->
 <template>
   <el-dropdown trigger="hover" @command="handleSetSize">
@@ -31,12 +31,13 @@ import { reactive, computed, nextTick, getCurrentInstance } from "vue";
 import { useAppStore } from "@/store/modules/app";
 import { useRoute, useRouter } from "vue-router";
 import { useTagsViewStore } from "@/store/modules/tagsView";
-import { ElMessage } from "element-plus";
+import { IComponentInternalInstance } from "@/utils/eleCompInstall";
 const router = useRouter();
 const route = useRoute();
 const useApp = useAppStore();
 const useTagsView = useTagsViewStore();
-const proxy = getCurrentInstance();
+const proxy = getCurrentInstance()?.appContext.config
+  .globalProperties as IComponentInternalInstance;
 const state = reactive({
   sizeOptions: [
     { label: "Large", value: "large" },
@@ -48,10 +49,9 @@ const state = reactive({
 const size = computed(() => useApp.getSize);
 const handleSetSize = (size: string) => {
   if (proxy) {
-    proxy.appContext.config.globalProperties.$ELEMENT.size = size;
     useApp.setSize(size);
     refreshView();
-    ElMessage({
+    proxy.$message({
       message: "配置成功",
       type: "success",
     });

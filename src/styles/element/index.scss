@@ -1,0 +1,9 @@
+// element-ui custom style
+
+@forward 'element-plus/theme-chalk/src/common/var.scss' with (
+    $colors: (
+        'primary': (
+            'base': #4b79f0
+        )
+    )
+);

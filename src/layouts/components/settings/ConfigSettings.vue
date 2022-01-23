@@ -4,44 +4,39 @@
  * @Author: Lqi
  * @Date: 2022-01-04 17:40:24
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-07 16:55:40
+ * @LastEditTime: 2022-01-20 13:58:00
 -->
 <template>
   <div class="drawer-container">
     <h3 class="drawer-title">系统配置</h3>
-    <!-- <div class="drawer-item">
-      <span>主题颜色</span>
-      <theme-picker
-        style="float: right; height: 26px; margin: -3px 8px 0 0"
-        @change="themeChange"
-      />
-    </div> -->
+    <div class="drawer-item">
+      <span>主题切换</span>
+      <ThemeSwitch class="drawer-switch"></ThemeSwitch>
+    </div>
 
     <div class="drawer-item">
       <span>启用页面标签</span>
-      <el-switch v-model="tagsView" class="drawer-switch" />
+      <el-switch v-model="tagsView" size="default" class="drawer-switch" />
     </div>
 
     <div class="drawer-item">
       <span>固定顶部</span>
-      <el-switch v-model="fixedHeader" class="drawer-switch" />
+      <el-switch v-model="fixedHeader" size="default" class="drawer-switch" />
     </div>
 
     <div class="drawer-item">
       <span>启用菜单LOGO</span>
-      <el-switch v-model="sidebarLogo" class="drawer-switch" />
+      <el-switch v-model="sidebarLogo" size="default" class="drawer-switch" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { computed } from "vue";
 import { useSettingsStore } from "@/store/modules/settings";
+import ThemeSwitch from "@/components/ThemeSwitch/ThemeSwitch.vue";
 
 const useSettings = useSettingsStore();
-const themeChange = () => {
-  console.log("此功能正在开发中。。。");
-};
 
 // tagsView
 const tagsView = computed({
@@ -85,19 +80,19 @@ const sidebarLogo = computed({
 
   .drawer-title {
     margin-bottom: 12px;
-    color: rgba(0, 0, 0, 0.85);
+    color: var(--el-text-color-primary);
     font-size: 14px;
     line-height: 22px;
   }
 
   .drawer-item {
-    color: rgba(0, 0, 0, 0.65);
+    display: flex;
+    justify-content: space-between;
+    color: var(--el-text-color-primary);
+    height: 32px;
+    line-height: 32px;
     font-size: 14px;
-    padding: 12px 0;
-  }
-
-  .drawer-switch {
-    float: right;
+    margin-bottom: 12px;
   }
 }
 .setting-toggle {

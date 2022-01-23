@@ -4,7 +4,7 @@
  * @Author: Lqi
  * @Date: 2021-12-31 15:46:35
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2022-01-11 15:37:42
+ * @LastEditTime: 2022-01-20 15:00:14
 -->
 <template>
   <section class="app-main">
@@ -26,27 +26,31 @@ const useTagsView = useTagsViewStore();
 const cachedViews = useTagsView.getCachedViews as any;
 const key = useRoute().path;
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 .app-main {
   /* 50= navbar  50  */
-  min-height: calc(100vh - 84px);
+  min-height: calc(100vh - 50px);
   width: 100%;
   position: relative;
   overflow: hidden;
   padding: 20px;
-  background: rgb(247, 248, 250);
+  background: var(--container-bg-color-2);
 }
 
 .fixed-header + .app-main {
   padding-top: 70px;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .hasTagsView {
+  .app-main {
+    /* 84 = navbar + tags-view = 50 + 34 */
+    min-height: calc(100vh - 84px);
+  }
   // 全开
   .fixed-header + .app-main {
     padding-top: 104px;
-    height: 100vh;
+    min-height: 100vh;
   }
 }
 </style>

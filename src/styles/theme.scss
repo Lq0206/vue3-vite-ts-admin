@@ -12,15 +12,47 @@
     --login-form-border: 1px solid rgba(209, 213, 219, 0.3);
     --login-form-shadow-color: 171deg 84% 36%;
     // app
-    --container-bg-color: #fff;
+    --container-bg-color-1: #fff;
+    --container-bg-color-2: #fff;
+    --app-main-bg-color: #fff;
+    --border-color: #eeeeed;
+    --active-sign-color: #4b79f0;
+    // menu
+    --menu-item-hover-bg-color: #ebf4fe;
+    --submenu-active-text-color: #333;
+    --menu-item-text-color: #333;
+    --menu-item-active-text-color: #333;
+    --sidebar-right-shadow: 2px 0 8px 0 rgb(29 35 41 / 5%);
 }
 
 .dark:root {
     --font-color: #fff;
+    // login-
     --login-bg-color: #111927;
     --login-bg-image:  radial-gradient(at 47% 33%, hsl(162.00, 77%, 40%) 0, transparent 59%), radial-gradient(at 82% 65%, hsl(218.00, 39%, 11%) 0, transparent 55%);
     --login-form-bg-color: rgba(17, 25, 40, 0.75);
     --login-form-border: 1px solid rgba(255, 255, 255, 0.125);
     --login-form-shadow-color: 280deg 8% 4%;
-    --container-bg-color: #fff;
+     // app
+    --container-bg-color-1: #242525;
+    --container-bg-color-2: #2a2c2c;
+    --app-main-bg-color: #fff;
+    --active-sign-color: #4b79f0;
+    --border-color: #262626;
+    // menu
+    --sidebar-bg-color: #1a1c27;
+    --menu-item-bg-color: #fff;
+    --menu-item-hover-bg-color: #1e2d4a;
+    --submenu-active-text-color: #fafafa;
+    --menu-item-text-color: #9a9ca2;
+    --menu-item-active-text-color: #408af6;
+    --sidebar-right-shadow: rgba(13, 13, 13, 0.65) 0px 2px 8px 0px;
+    // element-ui
+    --el-text-color-primary: #c7c4be;
+    --el-text-color-regular: #7b7976;
+    --el-text-color-secondary: #fff;
+    --el-fill-base: var(--container-bg-color-2);
+    --el-menu-bg-color: #2a2c2c !important;
+    --el-menu-border-color: #242525 !important;
+    // --el-text-color-regular: #fff;
 }

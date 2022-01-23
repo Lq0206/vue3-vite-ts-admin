@@ -1,6 +1,6 @@
 <!--
- * @Descripttion: 
- * @version: 
+ * @Descripttion:
+ * @version:
  * @Author: Lqi
  * @Date: 2022-01-05 17:34:18
  * @LastEditors: Please set LastEditors
@@ -13,7 +13,6 @@ export default defineComponent({
   setup() {
     const { params, query } = useRoute();
     const { path } = params;
-    console.log("red", path);
     useRouter()
       .replace({ path: "/" + path, query })
       .catch((err) => {
