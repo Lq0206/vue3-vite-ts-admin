@@ -4,18 +4,11 @@
   <HelloWorld msg="Welcome to Your Vue.js App" />
 </template>
 
-<script>
+<script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue';
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld,
-  },
-};
+const a = 'abs';
 </script>
-
-<style>
+<style lang="scss" scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
