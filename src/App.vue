@@ -7,6 +7,8 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue';
 const a = 'abs';
+
+const b = 'c';
 </script>
 <style lang="scss" scoped>
 #app {
